@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Titel der Anwendung -->
+    <title>Wie entsteht Arbeitslosigkeit?</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="styles/all.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/specific.css">
+
+    <script src="scripts/dependencies/jquery.js"></script>
+    <script src="scripts/dependencies/jquery-ui.min.js"></script>
+    <script src="scripts/dependencies/touchpunch.js"></script>
+    <script src="scripts/dependencies/angular.js" type="text/javascript"></script>
+    <script src="scripts/dependencies/draganddrop.js" type="text/javascript"></script>
+    <script src="scripts/dependencies/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="scripts/controller.js"></script>
+</head>
+
+<body ng-app="spa" ng-controller="controller" ng-cloak>
+    <div id="content">
+        <div id="dark-overlay"></div>
+        <div class="navbar app-title w-100">
+            <div class="container">
+                <!-- Überschrift der Anwendung -->
+                <h3>Wie entsteht Arbeitslosigkeit?</h3>
+            </div>
+        </div>
+
+        <div ng-show="introSkipped" class="container sb-wrapper mt-3 mt-lg-4">
+
+            <div class="row">
+                <div ng-show="lowWidth && evaluationPossible && !solutionShown && !showTables"
+                    class="position-absolute p-3 bg-white w-100 text-center shadow"
+                    style="top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 1;">
+                    <div ng-click="checkSolutionMobile()" class="btn-lila btn btn-lg text-white not-rounded mx-auto">
+                        Überprüfen
+                    </div>
+                </div>
+
+
+
+                <div ng-show="lowWidth && solutionShown && !finished"
+                    class="position-absolute p-3 bg-white w-100 text-center shadow"
+                    style="top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 1;">
+                    <div ng-click="nextRound();" data-dismiss="modal" data-toggle="modal" data-target="#round1Modal"
+                        class="btn-lila btn btn-lg text-white not-rounded mx-auto">
+                        Zu Runde {{currentRound + 2}}
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+            <!-- Aufgabe 1 Desktop-->
+            <div ng-show="currentRound==0 && !lowWidth" id="a-1" class="row mb-3 animate__animated animate__fadeInLeft pr-3">
+                <h5 class="text-white blue p-2 mx-auto hl mb-3">Theoretische Erklärung der Arbeitslosigkeit nach dem Keynesianismus (Nachfrageorientierung)</h5>
+                
+                <!-- Schaubild 1 -->
+                <div id="schaubild-1" class="col-8 p-0 position-relative" draggable="false">
+                    <img src="img/DesktopSchaubild1.png" class="img-fluid sb">
+                    <div id="s1-t1" class="position-absolute droppable" style="top: 0.4%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s1-t2" class="position-absolute droppable" style="top: 22%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s1-t3" class="position-absolute droppable" style="top: 43.8%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s1-t4" class="position-absolute droppable" style="top: 65.4%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s1-t5" class="position-absolute droppable" style="top: 76.2%;left: 45.2%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s1-t6" class="position-absolute droppable" style="top: 65.3%;left: 62.3%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s1-t7" class="position-absolute droppable" style="top: 43.3%;left: 62.1%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+                </div>
+
+                <div class="col-4 mainFrame p-3">
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s1-p4" src="img/1_4.png" class="img-fluid draggable">
+                        </div>
+                        <div class="col-6 droppable">
+                            <img id="s1-p7" src="img/1_7.png" class="img-fluid draggable">
+                        </div>
+                    </div>
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s1-p3" src="img/1_3.png" class="img-fluid draggable">
+                        </div>
+                        
+                        <div class="col-6 droppable">
+                            <img id="s1-p1" src="img/1_1.png" class="img-fluid draggable">
+                        </div>
+                    </div>
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s1-p6" src="img/1_6.png" class="img-fluid draggable">
+                        </div>
+                        <div class="col-6 droppable">
+                            <img id="s1-p5" src="img/1_5.png" class="img-fluid draggable">
+                        </div>
+                    </div>
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s1-p2" src="img/1_2.png" class="img-fluid draggable">
+                        </div>
+                        
+                        <div class="col-6 droppable">
+                        </div>
+                    </div>
+                    <div ng-show="!lowWidth && evaluationPossible && !solutionShown" class="position-absolute"
+                        style="top: 50%;left: 50%;transform: translate(-50%, -50%);">
+                        <div ng-click="checkSolution()" class="btn-lila btn btn-lg text-white not-rounded">
+                            Überprüfen
+                        </div>
+                    </div>
+                    <div ng-show="!lowWidth &&  solutionShown && !finished" class="position-absolute"
+                        style="top: 50%;left: 50%;transform: translate(-50%, -50%);">
+                        <div ng-click="nextRound();" data-dismiss="modal" data-toggle="modal" data-target="#round1Modal"
+                            class="btn-lila btn-lg btn text-white not-rounded ">
+                            Zu Runde {{currentRound + 2}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aufgabe 1 Mobile-->
+            <div ng-show="currentRound==0 && lowWidth" id="a-1-m" class="row animate__animated animate__fadeInLeft">
+                <!-- Schaubild 1 Mobile-->
+                <div id="schaubild-1-m" class="col-12  position-relative" draggable="false">
+                    <img src="img/mobileSchaubild1.png" class="img-fluid sb">
+
+                    <div ng-click="openBox(0);" id="s1-t1" class="position-absolute"
+                        style="top: 23.7%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round1Container[0]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round1Container[0]" draggable="false"
+                            src="{{'img/1_' + round1Container[0].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(1);" id="s1-t2" class="position-absolute"
+                        style="top: 40.3%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round1Container[1]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round1Container[1]" draggable="false"
+                            src="{{'img/1_' + round1Container[1].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(2);" id="s1-t3" class="position-absolute"
+                        style="top: 57%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round1Container[2]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round1Container[2]" draggable="false"
+                            src="{{'img/1_' + round1Container[2].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(3);" id="s1-t4" class="position-absolute"
+                        style="top: 73.6%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round1Container[3]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid">
+                        <img ng-show="round1Container[3]" draggable="false"
+                            src="{{'img/1_' + round1Container[3].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(4);" id="s1-t5" class="position-absolute"
+                        style="top: 81.8%;left: 35.9%;width: 27.7%;">
+                        <img ng-show="!round1Container[4]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round1Container[4]" draggable="false"
+                            src="{{'img/1_' + round1Container[4].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(5);" id="s1-t6" class="position-absolute"
+                        style="top: 73.4%;left: 57.9%;width: 27.7%;">
+                        <img ng-show="!round1Container[5]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round1Container[5]" draggable="false"
+                            src="{{'img/1_' + round1Container[5].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(6);" id="s1-t7" class="position-absolute"
+                        style="top: 56.6%;left: 57.8%;width: 27.7%;">
+                        <img ng-show="!round1Container[6]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round1Container[6]" draggable="false"
+                            src="{{'img/1_' + round1Container[6].idx + '.png'}}" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aufgabe 2 -->
+            <div ng-show="!lowWidth && currentRound==1" id="a-2" class="row mb-3 animate__animated animate__fadeInLeft pr-3">
+                <h5 class="text-white blue p-2 mx-auto hl">Theoretische Erklärung der Arbeitslosigkeit nach der Neoklassik (Angebotsorientierung)</h5>
+                <!-- Schaubild 2 -->
+                <div id="schaubild-2" class="col-8 p-0 position-relative" draggable="false">
+                    <img src="img/DesktopSchaubild2.png" class="img-fluid sb">
+                    <div id="s2-t1" class="position-absolute droppable" style="top: 22%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s2-t2" class="position-absolute droppable" style="top: 43.8%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s2-t3" class="position-absolute droppable" style="top: 65.4%;left: 27.9%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s2-t4" class="position-absolute droppable" style="top: 76.2%;left: 45.2%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s2-t5" class="position-absolute droppable" style="top: 65.3%;left: 62.3%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+
+                    <div id="s2-t6" class="position-absolute droppable" style="top: 43.3%;left: 62.1%;width: 21.7%;">
+                        <img draggable="false" src="img/platzhalter.png" class="img-fluid placeholder">
+                    </div>
+                </div>
+
+                <div class="col-4 mainFrame p-3">
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s2-p5" src="img/2_5.png" class="img-fluid draggable">
+                        </div>
+                        <div class="col-6 droppable">
+                            <img id="s2-p1" src="img/2_1.png" class="img-fluid draggable">
+                        </div>
+                    </div>
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s2-p4" src="img/2_4.png" class="img-fluid draggable">
+                        </div>
+                        <div class="col-6 droppable">
+                            <img id="s2-p3" src="img/2_3.png" class="img-fluid draggable">
+                        </div>
+                    </div>
+                    <div class="row no-gutters pieceRow">
+                        <div class="col-6 droppable">
+                            <img id="s2-p6" src="img/2_6.png" class="img-fluid draggable">
+                        </div>
+                        <div class="col-6 droppable">
+                            <img id="s2-p2" src="img/2_2.png" class="img-fluid draggable">
+                        </div>
+                    </div>
+                    <div ng-show="!lowWidth && evaluationPossible && !solutionShown" class="position-absolute"
+                        style="top: 50%;left: 50%;transform: translate(-50%, -50%);">
+                        <div ng-click="checkSolution()" class="btn-lila btn btn-lg text-white not-rounded">
+                            Überprüfen
+                        </div>
+                    </div>
+                    <div ng-show="!lowWidth &&  solutionShown && !finished" class="position-absolute"
+                        style="top: 50%;left: 50%;transform: translate(-50%, -50%);">
+                        <div ng-click="nextRound();" data-dismiss="modal" data-toggle="modal" data-target="#round1Modal"
+                            class="btn-lila btn-lg btn text-white not-rounded ">
+                            Zu Runde {{currentRound + 2}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aufgabe 2 Mobile-->
+            <div ng-show="currentRound==1 && lowWidth" id="a-2-m" class="row animate__animated animate__fadeInLeft">
+                <!-- Schaubild 1 Mobile-->
+                <div id="schaubild-2-m" class="col-12  position-relative" draggable="false">
+                    <img src="img/mobileSchaubild2.png" class="img-fluid sb">
+
+                    <div ng-click="openBox(0);" id="s2-t1" class="position-absolute"
+                        style="top: 31.5%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round2Container[0]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round2Container[0]" draggable="false"
+                            src="{{'img/2_' + round2Container[0].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(1);" id="s2-t2" class="position-absolute"
+                        style="top: 50.5%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round2Container[1]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round2Container[1]" draggable="false"
+                            src="{{'img/2_' + round2Container[1].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(2);" id="s2-t3" class="position-absolute"
+                        style="top: 69.5%;left: 13.7%;width: 27.7%;">
+                        <img ng-show="!round2Container[2]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid">
+                        <img ng-show="round2Container[2]" draggable="false"
+                            src="{{'img/2_' + round2Container[2].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(3);" id="s2-t4" class="position-absolute"
+                        style="top: 79%;left: 35.7%;width: 27.7%;">
+                        <img ng-show="!round2Container[3]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round2Container[3]" draggable="false"
+                            src="{{'img/2_' + round2Container[3].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(4);" id="s2-t5" class="position-absolute"
+                        style="top: 69.5%;left: 57.9%;width: 27.7%;">
+                        <img ng-show="!round2Container[4]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round2Container[4]" draggable="false"
+                            src="{{'img/2_' + round2Container[4].idx + '.png'}}" class="img-fluid">
+                    </div>
+
+                    <div ng-click="openBox(5);" id="s2-t6" class="position-absolute"
+                        style="top: 50.1%;left: 57.7%;width: 27.7%;">
+                        <img ng-show="!round2Container[5]" draggable="false" src="img/platzhalter.png"
+                            class="img-fluid placeholder">
+                        <img ng-show="round2Container[5]" draggable="false"
+                            src="{{'img/2_' + round2Container[5].idx + '.png'}}" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aufgabe 3 -->
+            <div ng-show="!lowWidth && currentRound==2" id="a-3" class="row mb-3 animate__animated animate__fadeInLeft">
+                <!-- Schaubild 3 -->
+                <div id="schaubild-3" class="position-relative" draggable="false">
+                    <img src="img/DesktopSchaubild3.png" class="img-fluid sb">
+                    <div class="neo-wrapper">
+                        <div id="s3-n1" class="position-absolute droppable"
+                            style="top: 10.5%; left: 1.1%; width: 20.5%;">
+                            <img ng-if="neoBox.length < 1" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 1" draggable="false"
+                                src="{{'img/3_' + neoBox[0].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s3-n2" class="position-absolute droppable" style="top: 22%;left: 17.4%;width: 20.5%;">
+                            <img ng-if="neoBox.length < 2" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 2" draggable="false"
+                                src="{{'img/3_' + neoBox[1].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-n3" class="position-absolute droppable"
+                            style="top: 32.1%; left: 1.1%;width: 20.5%;">
+                            <img ng-if="neoBox.length < 3" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 3" draggable="false"
+                                src="{{'img/3_' + neoBox[2].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-n4" class="position-absolute droppable"
+                            style="top: 43.9%;left: 17.4%;width: 20.5%;">
+                            <img ng-if="neoBox.length < 4" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 4" draggable="false"
+                                src="{{'img/3_' + neoBox[3].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-n5" class="position-absolute droppable"
+                            style="top: 53.8%; left: 1.1%; width: 20.5%;">
+                            <img ng-if="neoBox.length < 5" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 5" draggable="false"
+                                src="{{'img/3_' + neoBox[4].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-n6" class="position-absolute droppable"
+                            style="top: 65.9%;left: 17.4%;width: 20.5%;">
+                            <img ng-if="neoBox.length < 6" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 6" draggable="false"
+                                src="{{'img/3_' + neoBox[5].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-n7" class="position-absolute droppable"
+                            style="top: 75.5%; left: 1.1%; width: 20.5%;">
+                            <img ng-if="neoBox.length < 7" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="neoBox.length >= 7" draggable="false"
+                                src="{{'img/3_' + neoBox[6].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+                    </div>
+                    <div class="keynes-wrapper">
+                        <div id="s3-k1" class="position-absolute droppable"
+                            style="top: 10.8%; right: 0.6%; width: 20.5%;">
+                            <img ng-if="keynesBox.length < 1" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 1" draggable="false"
+                                src="{{'img/3_' + keynesBox[0].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s3-k2" class="position-absolute droppable"
+                            style="top: 21.9%;right: 16.7%;;width: 20.5%;">
+                            <img ng-if="keynesBox.length < 2" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 2" draggable="false"
+                                src="{{'img/3_' + keynesBox[1].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-k3" class="position-absolute droppable"
+                            style="top: 32.8%; right: 0.6%;width: 20.5%;">
+                            <img ng-if="keynesBox.length < 3" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 3" draggable="false"
+                                src="{{'img/3_' + keynesBox[2].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-k4" class="position-absolute droppable"
+                            style="top: 43.6%;right: 16.7%;;width: 20.5%;">
+                            <img ng-if="keynesBox.length < 4" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 4" draggable="false"
+                                src="{{'img/3_' + keynesBox[3].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-k5" class="position-absolute droppable"
+                            style="top: 54.4%; right: 0.6%; width: 20.5%;">
+                            <img ng-if="keynesBox.length < 5" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 5" draggable="false"
+                                src="{{'img/3_' + keynesBox[4].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-k6" class="position-absolute droppable"
+                            style="top: 65.8%;right: 16.5%;width: 20.5%;">
+                            <img ng-if="keynesBox.length < 6" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 6" draggable="false"
+                                src="{{'img/3_' + keynesBox[5].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+
+                        <div id="s2-k7" class="position-absolute droppable"
+                            style="top: 76.5%; right: 0.6%; width: 20.5%;">
+                            <img ng-if="keynesBox.length < 7" draggable="false" src="img/platzhalter.png"
+                                class="img-fluid placeholder">
+                            <img ng-if="keynesBox.length >= 7" draggable="false"
+                                src="{{'img/3_' + keynesBox[6].idx + '.png'}}" class="img-fluid placeholder">
+                        </div>
+                        <div ng-show="!lowWidth && evaluationPossible && !solutionShown && currentRound==2"
+                            class="position-absolute" style="top: 65%;left: 50%;transform: translate(-50%, -50%);">
+                            <div ng-click="checkSolution()" class="btn-lila btn-lg btn text-white not-rounded">
+                                Überprüfen
+                            </div>
+                        </div>
+                        <div ng-show="!lowWidth && finished && !rounds[currentRound].solved" class="position-absolute"
+                            style="top: 65%;left: 50%;transform: translate(-50%, -50%);">
+                            <div ng-click="nextRound();" data-dismiss="modal"
+                                class="btn-lila btn btn-lg text-white not-rounded float-right">
+                                Neu starten
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="choiceContainer">
+                        <div ng-repeat="choice in choices" id="{{'c-' + choice.idx}}"
+                            ng-show="isTopMostChoice($index+1);" class="position-absolute"
+                            style="top: 48%;left: 36.5%;width: 27%;">
+                            <img tooltip src="{{'img/3_' + choice.idx + '.png'}}" data-toggle="tooltip"
+                                ng-attr-title="{{tooltips[choice.idx-1]}}" class="img-fluid placeholder draggable">
+                        </div>
+                    </div>
+                    <div class="controlsContainer">
+                        <div class="position-absolute" style="top: 78.2%;left: 33.3%;width: 17.1%;">
+                            <img ng-class="{disabled: boxFull(0)}" ng-click="putLeft();" draggable="false"
+                                src="img/pfeil-links.png" class="img-fluid placeholder hexagon-pointer">
+                        </div>
+
+                        <div class="position-absolute" style="top: 78.2%;right: 32.7%;width: 17.1%;">
+                            <img ng-class="{disabled: boxFull(1)}" ng-click="putRight();" draggable="false"
+                                src="img/pfeil-rechts.png" class="img-fluid placeholder hexagon-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aufgabe 3 Mobile-->
+            <div ng-show="lowWidth && !showTables && currentRound==2" id="a-3-m"
+                class="row mb-3 animate__animated animate__fadeInLeft">
+                <!-- Schaubild 3 -->
+                <div id="schaubild-3-m" class="position-relative" draggable="false">
+                    <img src="img/mobileSchaubild3_ohne.png" class="img-fluid sb">
+
+                    <div class="choiceContainer">
+                        <div ng-repeat="choice in choices" id="{{'c-' + choice.idx}}"
+                            ng-show="isTopMostChoice($index+1);" class="position-absolute"
+                            style="top: 44.8%;left: 21.5%;width: 58%;">
+                            <img tooltip src="{{'img/3_' + choice.idx + '.png'}}" data-toggle="tooltip"
+                                ng-attr-title="{{tooltips[choice.idx-1]}}" class="img-fluid placeholder draggable">
+                        </div>
+                    </div>
+                    <div class="controlsContainer">
+                        <div class="position-absolute" style="top: 76.7%; left: 5.6%;width: 29%;">
+                            <img ng-class="{disabled: boxFull(0)}" ng-click="putLeft();" draggable="false"
+                                src="img/pfeil-links.png" class="img-fluid placeholder hexagon-pointer">
+                        </div>
+
+                        <div class="position-absolute" style="top: 77.2%; right: 5.7%;width: 29%;">
+                            <img ng-class="{disabled: boxFull(1)}" ng-click="putRight();" draggable="false"
+                                src="img/pfeil-rechts.png" class="img-fluid placeholder hexagon-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Tables Aufgabe 3 Mobile -->
+            <div ng-show="showTables && lowWidth && currentRound==2"
+                class="row mb-3 animate__animated animate__fadeInLeft">
+                <div class="neoWrapper p-2">
+                    <div class="row no-gutters neo-header justify-content-center text-white p-2">
+                        Neoklassik
+                    </div>
+                    <div ng-repeat="entry in neoBox" class="row no-gutters choice-entry">
+                        <span>{{entry.text}} <i ng-show="entry.idx <=7"
+                                class="fas fa-check-circle align-self-center correct"></i> <i ng-show="entry.idx >7"
+                                class="fas fa-times-circle align-self-center incorrect"></i></span>
+                    </div>
+                </div>
+
+                <div class="keynesWrapper p-2">
+                    <div class="row no-gutters keynes-header justify-content-center text-white p-2">
+                        Keynesianismus
+                    </div>
+                    <div ng-repeat="entry in keynesBox" class="row no-gutters choice-entry">
+                        <span>{{entry.text}} <i ng-show="entry.idx >=7"
+                                class="fas fa-check-circle align-self-center correct"></i> <i ng-show="entry.idx <7"
+                                class="fas fa-times-circle align-self-center incorrect"></i></span>
+                    </div>
+                </div>
+                <div ng-show="lowWidth && evaluationPossible && !solutionShown && showTables"
+                    class="p-3 bg-white w-100 text-center shadow">
+                    <div ng-click="continueS3()" class="btn-lila btn btn-lg text-white not-rounded mx-auto">
+                        Weiter versuchen
+                    </div>
+                </div>
+                <div ng-show="lowWidth && finished && !rounds[currentRound].solved"
+                    class="p-3 bg-white w-100 text-center shadow"    >
+                    <div ng-click="nextRound();" data-dismiss="modal"
+                        class="btn-lila btn btn-lg text-white not-rounded mx-auto">
+                        Neu starten
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- <div ng-show="!lowWidth &&  solutionShown && !finished" ng-click="nextRound();" data-dismiss="modal" data-toggle="modal"
+                data-target="#round1Modal" class="btn-lila btn text-white not-rounded float-right">
+                Zu Runde {{currentRound + 2}}
+            </div> -->
+
+            <!-- <div ng-show="!lowWidth && finished && !rounds[currentRound].solved" ng-click="nextRound();" data-dismiss="modal"
+                class="btn-lila btn text-white not-rounded float-right">
+                Neustarten
+            </div> -->
+
+
+        </div>
+
+        <!-- Impressum -->
+        <div class="modal fade" id="modalImprint" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="modalImprintlabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                <div class="modal-content rounded-0 shadow overflow-visible">
+                    <div class="modal-header border-0 rounded-0">
+                        <h5 class="modal-title" id="staticBackdropLabel">Impressum</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                                aria-hidden="true">&times;</span> </button>
+                    </div>
+                    <div class="modal-body  popup-content">
+                        <h3>Herausgeber</h3>
+                        <p>Joachim Herz Stiftung<br>
+                            Langenhorner Chaussee 384<br>
+                            22419 Hamburg<br>
+                            <a href="http://www.joachim-herz-stiftung.de"
+                                target="blank">www.joachim-herz-stiftung.de</a>
+                            <br><br>
+                            © Joachim Herz Stiftung, 2021<br>
+                            Alle Rechte vorbehalten.
+                        </p>
+                        <h3>Produktion</h3>
+                        <p>Klett MINT GmbH</p>
+                        <h3>Programmierung und Design</h3>
+                        <p>Panvision GmbH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Intro Modal -->
+        <div class="modal fade" id="modalIntro" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="modalIntro" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                <div class="modal-content rounded-0 shadow overflow-visible">
+                    <div class="modal-header border-0 rounded-0">
+                        <h5 class="modal-title turn title lead" id="staticBackdropLabel">So wird‘s gemacht!</h5>
+                    </div>
+                    <div class="modal-body  popup-content" >
+                        <p ng-show="!lowWidth">
+                            Es gilt, die verschiedenen Bausteine zur theoretischen Erklärung von Arbeitslosigkeit richtig zusammenzusetzen. 
+                            Neben den Grafiken findest du Textbausteine. Klicke auf den gewünschten Baustein und ziehe ihn bei gedrückter Maustaste in eine grau hinterlegte Lücke.                             
+                        </p>                        
+                        <p ng-show="lowWidth">
+                            Es gilt, die verschiedenen Bausteine zur theoretischen Erklärung von Arbeitslosigkeit richtig zusammenzusetzen. Klicke auf die grauen Felder und wähle den jeweils passenden Baustein aus.                          
+                        </p>
+                        <p>
+                            Hast du alle Bausteine eingefügt, kannst du dein Ergebnis überprüfen. 
+                        </p>
+                        <div class="row no-gutters justify-content-end">
+                            <div data-dismiss="modal" data-toggle="modal" data-target="#round1Modal"
+                                class="btn-lila col-4 btn text-white not-rounded">
+                                Verstanden!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Runde 1 Modal -->
+        <div class="modal fade" id="round1Modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="round1Modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                <div class="modal-content rounded-0 shadow overflow-visible">
+                    <div class="modal-header border-0 rounded-0">
+                        <h5 class="modal-title turn title lead" id="staticBackdropLabel">
+                            {{currentRound==0?"Runde 1":currentRound==1?"Runde 2":currentRound==2?"Runde 3":"";}}
+                        </h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                                aria-hidden="true">&times;</span> </button> -->
+                    </div>
+                    <div class="modal-body  popup-content">
+                        <p ng-show="currentRound==0">
+                            Los geht es mit der theoretischen Erklärung der Arbeitslosigkeit <b>nach dem Keynesianismus
+                                (Nachfrageorientierung).</b>
+                            Bringe die Textbausteine in die richtige Reihenfolge. Du hast maximal drei Versuche!
+                        </p>
+
+                        <p ng-show="currentRound==1">
+                            Nun geht es mit der theoretischen Erklärung der Arbeitslosigkeit nach der
+                            <b>Neoklassik (Angebotsorientierung)</b> weiter. Bringe auch hier die Textbausteine
+                            in die richtige Reihenfolge. Du hast maximal drei Versuche!
+                        </p>
+
+                        <p ng-show="currentRound==2&&!lowWidth">
+                            In der Theorie bist du jetzt fit, oder? Dann stelle dein Wissen unter Beweis und ordne die Maßnahmen der angebots- oder nachfrageorientierten Theorie richtig zu. Klicke dazu auf den jeweiligen Pfeil. Brauchst du einen Tipp bei der Zuteilung, dann fahre mit der Maus über den Textbaustein. 
+
+                        </p>
+                        <p ng-show="currentRound==2&&lowWidth">
+                            In der Theorie bist du jetzt fit, oder? Dann stelle dein Wissen unter Beweis und ordne die Maßnahmen der angebots- oder nachfrageorientierten Theorie richtig zu. Klicke dazu auf den jeweiligen Pfeil. Brauchst du einen Tipp bei der Zuteilung, dann klicke auf den Textbaustein. 
+
+                        </p>
+
+                        <div class="row no-gutters justify-content-end">
+                            <div id="skipIntro" data-dismiss="modal" class="btn-lila col-4 btn text-white not-rounded">
+                                Verstanden!
+                            </div>
+                        </div>
+
+                        <!-- <div class="row no-gutters justify-content-end">
+                            <div data-dismiss="modal"  class="bg-lila col-2 btn text-white">
+                                Fertig
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lösungs Modal -->
+        <div class="modal fade" id="solutionModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="solutionModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                <div class="modal-content rounded-0 shadow overflow-visible">
+                    <div class="modal-header border-0 rounded-0">
+                        <h5 class="modal-title turn title lead" id="staticBackdropLabel">Überprüfung</h5>
+                    </div>
+                    <div class="modal-body  popup-content">
+                        <p ng-if="currentRound<2 && !rounds[currentRound].solved&&rounds[currentRound].tries<3">
+                            Das ist leider noch nicht ganz richtig. Die falsch platzierten Bausteine liegen wieder in der Box. Versuche es noch einmal.                            
+                        </p>
+                        <p ng-if="currentRound==2&&!rounds[currentRound].solved&&rounds[currentRound].tries<3">
+                            Das ist leider noch nicht ganz richtig. Die falsch zugeordneten Bausteine liegen wieder auf dem Stapel. Versuche es noch einmal.  
+                        </p>
+                        <p ng-if="currentRound<2 && rounds[currentRound].tries==3">
+                            Das stimmt leider nicht. Schau dir die richtige Reihenfolge gut an und präge sie dir ein.
+                        </p>
+                        <p ng-if="rounds[currentRound].solved && !finished">
+                            Gut gemacht. Weiter geht‘s!
+                        </p>
+                        <p ng-if="currentRound==2 && !rounds[currentRound].solved && rounds[currentRound].tries==3">
+                            Das stimmt leider nicht. Schau dir die richtige Zuordnung gut an. Du kannst die Anwendung wiederholen.
+                        </p>
+
+
+                        <div ng-if="finished && rounds[currentRound].solved">
+                            <p class="text-center">
+                                Super. Du hast alle Aufgaben gemeistert!
+                            </p>
+                            <div class="row">
+                                <img class="m-auto" src="img/badge.svg" width="25%">
+                            </div>
+                        </div>
+
+                        <div class="row no-gutters justify-content-end">
+                            <div ng-if="!rounds[currentRound].solved" ng-click="$scope.content2high()" data-dismiss="modal"
+                                class="btn-lila col-4 btn text-white not-rounded">
+                                Verstanden!
+                            </div>
+
+                            <div ng-if="rounds[currentRound].solved && !finished" ng-click="nextRound();"
+                                data-dismiss="modal" data-toggle="modal" data-target="#round1Modal"
+                                class="btn-lila col-4 btn text-white not-rounded">
+                                Zu Runde {{currentRound + 2}}
+                            </div>
+
+                            <div ng-if="finished && rounds[currentRound].solved" ng-click="nextRound();"
+                                data-dismiss="modal" class="btn-lila col-4 btn text-white not-rounded mt-2">
+                                Neu starten
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Puzzlebox Modal -->
+        <div class="modal fade" id="piecesModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="piecesModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content rounded-0 shadow overflow-visible">
+                    <div class="modal-header border-0 rounded-0">
+                        <h5 class="modal-title turn title lead" id="staticBackdropLabel">Puzzlebox
+                        </h5>
+                    </div>
+                    <div class="modal-body limitHeight popup-content">
+                        <p class="text-center">
+                            Wähle das passende Stück
+                        </p>
+                        <div>
+                            <div ng-show="currentRound==0" id="keynesPieces" class="row">
+                                <div ng-repeat="piece in keynesChoices" class="col-6">
+                                    <img ng-class="{active: piece.active}" ng-click="pieceSelected($index);"
+                                        id="{{'s1-p' + piece.idx}}" src="{{'img/1_' + (piece.idx) + '.png'}}"
+                                        class="img-fluid">
+                                </div>
+                            </div>
+
+                            <div ng-show="currentRound==1" id="neoPieces" class="row">
+                                <div ng-repeat="piece in neoChoices" class="col-6">
+                                    <img ng-class="{active: piece.active}" ng-click="pieceSelected($index);"
+                                        id="{{'s1-p' + piece.idx}}" src="{{'img/2_' + (piece.idx) + '.png'}}"
+                                        class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer border-0 rounded-0">
+                        <div class="">
+                            <div id="closeBox" ng-click="choiceConfirmed();" data-dismiss="modal"
+                                class="btn-lila  btn text-white not-rounded">
+                                Auswählen
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="load" ng-hide="introSkipped">
+
+        </div>
+        <div class="foot position-absolute" ng-show="introSkipped || !lowWidth" ng-class="{'position-relative' : lowWidth && content2high(), 'position-absolute' : !lowWidth || !content2high()}">
+            <div class="d-flex container justify-content-end">
+                <div class="d-flex align-items-center mr-auto">
+                    <div ng-class="{'border-light' : currentRound==0}" ng-click="goToRound(0);"
+                        class="btn-lila btn text-white not-rounded mr-2">
+                        R<span class="d-none d-md-inline">unde</span> 1
+                    </div>
+                    <div ng-class="{'border-light' : currentRound==1}" ng-click="goToRound(1);"
+                        class="btn-lila btn text-white not-rounded mr-2">
+                        R<span class="d-none d-md-inline">unde</span> 2
+                    </div>
+                    <div ng-class="{'border-light' : currentRound==2}" ng-click="goToRound(2);"
+                        class="btn-lila btn text-white not-rounded mr-2">
+                        R<span class="d-none d-md-inline">unde</span> 3
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <img src="img/jhs-logo-white.svg" class="logo" alt="Logo">
+                    <div class="impressum">
+                        <span class="pointer" id="impressum" data-toggle="modal" data-target="#modalImprint">
+                            IMPRESSUM
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+            <!-- Modal Resize -->
+            <div class="modal fade" id="resizeModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="piecesModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content rounded-0 shadow overflow-visible">
+                    <div class="modal-header border-0 rounded-0">
+                        <h5 class="modal-title turn title lead" id="staticBackdropLabel">Da hat sich etwas verändert...
+                        </h5>
+                        <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <div class="modal-body limitHeight popup-content">
+                         <p>Du hast die Größe deines Browserfensters verändert. </p>
+                        <p>Falls es zu Darstellungsproblemen kommt, solltest du die Seite neu laden.</p>
+                    </div>
+                    <div class="modal-footer border-0 rounded-0">
+                        <div class="">
+                            <div onClick="window.location.reload();" data-dismiss="modal"
+                                class="btn-lila  btn text-white not-rounded">
+                                Seite neu laden
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+    
+    $( window ).resize(function() {
+  console.log("Resize");
+  
+  $('#resizeModal').modal();
+});
+</script>
+
+</body>
+
+</html>
